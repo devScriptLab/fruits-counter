@@ -2,13 +2,22 @@ import {Component} from 'react'
 import './index.css'
 
 class FruitsCounter extends Component {
+  state = {mangoesCount: 0, bananasCount: 0}
+
+  onClickEatMango = () =>
+    this.setState(prevState => ({mangoesCount: prevState.mangoesCount + 1}))
+
+  onClickEatBanana = () =>
+    this.setState(prevState => ({bananasCount: prevState.bananasCount + 1}))
+
   render() {
+    const {mangoesCount, bananasCount} = this.state
     return (
       <div className="fruits-counter-container">
         <div className="fruits-counter">
           <h1 className="count-text">
-            Bob ate <span className="count">4</span> mangoes{' '}
-            <span className="count">4</span> bananas
+            Bob ate <span className="count">{mangoesCount}</span> mangoes{' '}
+            <span className="count">{bananasCount}</span> bananas
           </h1>
           <div className="counters-control-container">
             <div className="counter-control">
@@ -18,7 +27,11 @@ class FruitsCounter extends Component {
                 className="fruit-image"
               />
               <div className="button-container">
-                <button type="button" className="button">
+                <button
+                  type="button"
+                  className="button"
+                  onClick={this.onClickEatMango}
+                >
                   Eat Mango
                 </button>
               </div>
@@ -30,7 +43,11 @@ class FruitsCounter extends Component {
                 className="fruit-image"
               />
               <div className="button-container">
-                <button type="button" className="button">
+                <button
+                  type="button"
+                  className="button"
+                  onClick={this.onClickEatBanana}
+                >
                   Eat Banana
                 </button>
               </div>
